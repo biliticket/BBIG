@@ -46,7 +46,6 @@ class BilibiliClient:
         )
         self._init_buvid()
         self._getKeys()
-        self.risk_header = self._gen_risk_header()
 
     def _get_newest_version(self):
         # resp = self.get("https://app.bilibili.com/x/v2/version?mobi_app=android")
@@ -220,28 +219,9 @@ class BilibiliClient:
     def _on_response(self, response: httpx.Response):
         pass
 
+    # NOT AVAILABLE YET
     def _gen_risk_header(self):
-        uid = self.uid
-        buvid = self.buvid
-        identify = urlencode(self._app_sign({"ts": int(time.time() * 1000)}))
-        identify = quote(identify)
-        _dist = [
-            f"appkey/1d8b6e7d45233436",
-            f"brand/{self.brand}",
-            f"localBuvid/{buvid}",
-            f"mVersion/296",
-            f"mallVersion/{self.biliAppVersion}",
-            f"model/{self.model}",
-            f"osver/15",
-            f"platform/h5",
-            f"uid/{uid}",
-            f"channel/1",
-            f"deviceId/{buvid}",
-            f"sLocale/zh_CN",
-            f"cLocale/zh_CN",
-            f"identify/{identify}" 
-        ]
-        return " ".join(_dist)
+        raise Exception("Not Available in Open Source Version")
 
     # NOT AVAILABLE YET
     def _app_sign(self,params: dict) -> dict:
